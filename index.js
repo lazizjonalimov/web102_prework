@@ -17,6 +17,9 @@ function deleteChildElements(parent) {
     }
 }
 
+
+// const scores = [22, 54, 76, 92, 43, 33];
+
 /*****************************************************************************
  * Challenge 3: Add data about each game as a card to the games-container
  * Skills used: DOM manipulation, for loops, template literals, functions
@@ -25,30 +28,48 @@ function deleteChildElements(parent) {
 // grab the element with the id games-container
 const gamesContainer = document.getElementById("games-container");
 
+// alert("LDKD");
 // create a function that adds all data from the games array to the page
 function addGamesToPage(games) {
 
     // loop over each item in the data
 
+    for (let i = 0; i < games.length; i++) {
+        console.log(games[i]);
 
         // create a new div element, which will become the game card
+        let div = document.createElement('div');
 
+        let img_source = games[i].img;
 
         // add the class game-card to the list
-
+        div.classList.add("game-card");
 
         // set the inner HTML using a template literal to display some info 
-        // about each game
+        // about each game -> Make sure to give the image the class game-img.
         // TIP: if your images are not displaying, make sure there is space
         // between the end of the src attribute and the end of the tag ("/>")
+        const HTMLContentToAppend = `
+            <p>
+            <img src= "${img_source}" alt="${games[i].name}" class="game-img">
+            </p>
+            <p class='game_names'>${games[i].name}</p>
+            <p> ${games[i].description}</p>
+            <p>Backers: ${games[i].backers}</p>`;
 
+        div.innerHTML = HTMLContentToAppend
 
         // append the game to the games-container
+        const currDiv = document.getElementById('games-container');
+        currDiv.appendChild(div);        
+    }
 
 }
 
+
 // call the function we just defined using the correct variable
 // later, we'll call this function using a different list of games
+let list_of_games = addGamesToPage(GAMES_JSON);
 
 
 /*************************************************************************************
@@ -57,23 +78,49 @@ function addGamesToPage(games) {
  * Skills used: arrow functions, reduce, template literals
 */
 
+// 11 times loop
+
 // grab the contributions card element
 const contributionsCard = document.getElementById("num-contributions");
 
-// use reduce() to count the number of total contributions by summing the backers
 
+// const currentValue = GAMES_JSON.backers
+// const acc = 0;
+
+// use reduce() to count the number of total contributions by summing the backers
+const totalContributions = GAMES_JSON.reduce((acc, game) => {
+    return acc += game.backers
+}, 0);
+
+console.log(totalContributions);
 
 // set the inner HTML using a template literal and toLocaleString to get a number with commas
+contributionsCard.innerText = totalContributions.toLocaleString('en-US');
+
 
 
 // grab the amount raised card, then use reduce() to find the total amount raised
 const raisedCard = document.getElementById("total-raised");
 
+const totalRaised = GAMES_JSON.reduce((acc, game) => {
+    return acc += game.pledged
+}, 0);
+
 // set inner HTML using template literal
+raisedCard.innerText = "$" + totalRaised.toLocaleString('en-US');
 
 
 // grab number of games card and set its inner HTML
 const gamesCard = document.getElementById("num-games");
+
+const totalGames = GAMES_JSON.reduce((acc, game) => {
+    return acc += 1
+}, 0);
+
+// set inner HTML using template literal
+gamesCard.innerText = totalGames.toLocaleString('en-US');
+
+
 
 
 /*************************************************************************************
