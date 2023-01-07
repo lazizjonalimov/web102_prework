@@ -3,10 +3,18 @@
 body {
     font-family: 'Cabin';
     background-color: #758190;
+    margin: 0;
 }
 
 #tentacles {
     width: 50px;
+}
+
+.img-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
 }
 
 .header {
@@ -24,7 +32,8 @@ body {
     align-items: center;
     cursor: pointer;
     box-shadow: 0 0 30px lightblue ;
-    
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 .stats-card {
@@ -44,6 +53,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 2rem;
 }
 
 .game-img {
@@ -81,4 +93,48 @@ button {
 
 .game_names {
     font-weight: 500;
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar {
+    margin-left: auto;
+    margin-right: 3rem;
+    font-weight: 300;
+
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+}
+
+.navbar ul li a:hover {
+    color: antiquewhite;
+}
+
+#games-sec, #stats-sec {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+#about-sec, #description-container {
+    text-align: center;
+
+}
+
+#games-sec+p {
+    text-align: center;
+    font-weight: 300;
+}
+
+#button-container button:hover {
+    background: lightblue;
+    border: 1px solid black;
 }
